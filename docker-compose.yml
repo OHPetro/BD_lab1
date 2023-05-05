@@ -1,0 +1,27 @@
+version: '3.8' 
+services:
+  app:
+    build: ./app
+    depends_on:
+      - db
+    volumes:
+      - ./files:/app/files
+    networks:
+      - MY
+  db:
+    image: postgres:9-alpine
+    restart: always 
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=2509
+      - POSTGRES_DB=DB_lab_1 
+    ports:
+      - '5433:5432' 
+    expose:
+      - '5432'
+    networks:
+      - MY
+
+networks:
+  MY:
+      
